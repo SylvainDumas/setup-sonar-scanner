@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -47,18 +48,17 @@ jobs:
   test-action:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ['4.8.1.3023', '5.0.1.3006', '6.2.1.4610', '7.0.2.4839']
 
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Test Local Action
+      - name: 'Test Local Action with CLI Version ${{ matrix.version }}'
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
-
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+          version: ${{ matrix.version }}

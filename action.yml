@@ -1,5 +1,7 @@
-name: 'Setup Sonarqube scanner cli'
-description: 'Setup Sonarqube scanner cli and add it to the PATH'
+name: 'Setup Scanner CLI for SonarQube (Server, Cloud)'
+description:
+  'GitHub Actions to setup Scanner CLI for SonarQube (Server, Cloud) and add it
+  to PATH'
 author: SylvainDumas
 
 branding:
@@ -9,8 +11,9 @@ branding:
 # Define your inputs here.
 inputs:
   version:
-    description: 'The version of the package to install'
-    required: true
+    description: 'The version to install'
+    default: '7.0.2.4839'
+    required: false
 
 runs:
   using: node20
