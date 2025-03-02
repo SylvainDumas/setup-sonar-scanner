@@ -1,6 +1,6 @@
 {
   "name": "setup-sonar-scanner",
-  "description": "GitHub Actions to setup Sonar Scanner CLI",
+  "description": "GitHub Actions to setup Scanner CLI for SonarQube (Server, Cloud)",
   "version": "0.0.0",
   "author": "Dumas Sylvain",
   "type": "module",
@@ -14,7 +14,11 @@
     "url": "https://github.com/SylvainDumas/setup-sonar-scanner/issues"
   },
   "keywords": [
-    "actions"
+    "actions",
+    "github",
+    "typescript",
+    "sonarqube",
+    "sonar-scanner"
   ],
   "exports": {
     ".": "./dist/index.js"

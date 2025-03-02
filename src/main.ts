@@ -14,41 +14,38 @@ export async function run(): Promise<void> {
     const version: string = core.getInput('version', { required: true })
     core.debug(`Version input: ${version}`)
 
-    if (!versions.isSonarVersion(version)) {
-      throw new Error(`Unsupported version format: ${version}`)
-    }
-
-    // get the cache version (explicit semantic version)
-    const cacheVersion = versions.toExplicitVersion(version)
+    // Get the scanner CLI version from the requested version
+    const cliVersion = versions.getCliVersion(version)
     core.info(
-      `SonarQube scanner CLI version ${version}: Cache version ${cacheVersion}`
+      `Find Scanner CLI version ${cliVersion} for requested version: ${version}`
     )
 
     // Find the tool in the cache or download it
-    let toolPath = tc.find(versions.TOOL_NAME, cacheVersion)
+    const ghCacheVersion = versions.getGhCacheVersion(cliVersion)
+    let toolPath = tc.find(versions.TOOL_NAME, ghCacheVersion)
+    core.debug(`Tool path: ${toolPath}`)
+    core.info(
+      `Search Scanner CLI version ${cliVersion} in local tool cache with version ${ghCacheVersion}: ${toolPath ? 'Found' : 'Not found'}`
+    )
     if (!toolPath) {
       // Get version information
-      const source = versions.getVersionSource(version)
-      core.info(`SonarQube scanner CLI version ${version}: Setup`)
+      const source = versions.getVersionSource(cliVersion)
+      core.debug(`Source: ${source.url}`)
+      core.info(`Scanner CLI version ${cliVersion}: Setup`)
 
-      core.info(
-        `SonarQube scanner CLI version ${version}: Not in cache, downloading`
-      )
       const extractedPath = await install.downloadTool(source)
       core.debug(`Extracted path: ${extractedPath}`)
       toolPath = await tc.cacheDir(
         extractedPath,
         versions.TOOL_NAME,
-        cacheVersion
+        ghCacheVersion
       )
       core.debug(`Cached path: ${toolPath}`)
-    } else {
-      core.info(`SonarQube scanner CLI version ${version}: Found in cache`)
     }
 
     // Add the tool to path
     const binPath = path.join(toolPath, 'bin')
-    core.info(`SonarQube scanner CLI version ${version}: Adding to PATH`)
+    core.info(`Scanner CLI version ${cliVersion}: Adding to PATH`)
     core.debug(`Adding ${binPath} to PATH`)
     core.addPath(binPath)
   } catch (err) {

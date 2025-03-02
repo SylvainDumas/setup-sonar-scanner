@@ -29866,20 +29866,44 @@ function _getExtractorFn(packageFile) {
     }
 }
 
-// TO THINK ABOUT: prefix tool name by adeo ?
 const TOOL_NAME = 'sonar-scanner-cli';
-// system: linux, macos, windows
-// arch: x86, x64
-// 4.8.1.3023 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}-${os}.zip
-// 5.0.0.2966 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}-${os}.zip
-// 5.0.1.3006 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}-${os}.zip
-// 6.0.0.4432
-// 6.1.0.4477 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}-${system}-${arch}.zip
-// 6.2.0.4584 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}.zip
-// 6.2.1.4610 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}.zip
-// 7.0.0.4796 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}.zip
-// 7.0.1.4817 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}.zip
-// 7.0.2.4839 https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${version}.zip
+/**
+ * Retrieves the CLI version if the requested version is in a supported format.
+ *
+ * @param requested - The version string requested by the user.
+ * @returns The requested version string if it is in a supported format.
+ * @throws {Error} If the requested version format is unsupported.
+ */
+function getCliVersion(requested) {
+    if (!isSonarVersion(requested)) {
+        throw new Error(`Unsupported version format: ${requested}`);
+    }
+    return requested;
+}
+/**
+ * Extracts the major, minor, and patch version from a given version string.
+ *
+ * @param version - The version string to process.
+ * @returns The version string in the format "major.minor.patch".
+ * @throws If the version format is unsupported.
+ */
+function getGhCacheVersion(version) {
+    if (!isSonarVersion(version)) {
+        throw new Error(`Unsupported version format: ${version}`);
+    }
+    return version.split('.').slice(0, 3).join('.');
+}
+/**
+ * Checks if the given version string follows the SonarQube version format.
+ *
+ * The SonarQube version format is expected to be four sets of digits separated by dots (e.g., "1.2.3.4").
+ *
+ * @param version - The version string to check.
+ * @returns `true` if the version string matches the SonarQube version format, otherwise `false`.
+ */
+function isSonarVersion(version) {
+    return /^\d+\.\d+\.\d+\.\d+$/.test(version);
+}
 /**
  * Retrieves the source URL and digest for a given SonarQube scanner version.
  *
@@ -29918,32 +29942,6 @@ function _getOsPlatform() {
         return 'linux';
     }
 }
-/**
- * Checks if the given version string follows the SonarQube version format.
- *
- * The SonarQube version format is expected to be four sets of digits separated by dots (e.g., "1.2.3.4").
- *
- * @param version - The version string to check.
- * @returns `true` if the version string matches the SonarQube version format, otherwise `false`.
- */
-function isSonarVersion(version) {
-    return /^\d+\.\d+\.\d+\.\d+$/.test(version);
-}
-/**
- * Converts a given version string to an explicit version format.
- * Ensures the version string is in a supported format and returns
- * the version truncated to three segments.
- *
- * @param version - The version string to convert.
- * @returns The explicit version string.
- * @throws {Error} If the version format is unsupported.
- */
-function toExplicitVersion(version) {
-    if (!isSonarVersion(version)) {
-        throw new Error(`Unsupported version format: ${version}`);
-    }
-    return version.split('.').slice(0, 3).join('.');
-}
 
 /**
  * The main function for the action.
@@ -29954,30 +29952,27 @@ async function run() {
     try {
         const version = coreExports.getInput('version', { required: true });
         coreExports.debug(`Version input: ${version}`);
-        if (!isSonarVersion(version)) {
-            throw new Error(`Unsupported version format: ${version}`);
-        }
-        // get the cache version (explicit semantic version)
-        const cacheVersion = toExplicitVersion(version);
-        coreExports.info(`SonarQube scanner CLI version ${version}: Cache version ${cacheVersion}`);
+        // Get the scanner CLI version from the requested version
+        const cliVersion = getCliVersion(version);
+        coreExports.info(`Find Scanner CLI version ${cliVersion} for requested version: ${version}`);
         // Find the tool in the cache or download it
-        let toolPath = toolCacheExports.find(TOOL_NAME, cacheVersion);
+        const ghCacheVersion = getGhCacheVersion(cliVersion);
+        let toolPath = toolCacheExports.find(TOOL_NAME, ghCacheVersion);
+        coreExports.debug(`Tool path: ${toolPath}`);
+        coreExports.info(`Search Scanner CLI version ${cliVersion} in local tool cache with version ${ghCacheVersion}: ${toolPath ? 'Found' : 'Not found'}`);
         if (!toolPath) {
             // Get version information
-            const source = getVersionSource(version);
-            coreExports.info(`SonarQube scanner CLI version ${version}: Setup`);
-            coreExports.info(`SonarQube scanner CLI version ${version}: Not in cache, downloading`);
+            const source = getVersionSource(cliVersion);
+            coreExports.debug(`Source: ${source.url}`);
+            coreExports.info(`Scanner CLI version ${cliVersion}: Setup`);
             const extractedPath = await downloadTool(source);
             coreExports.debug(`Extracted path: ${extractedPath}`);
-            toolPath = await toolCacheExports.cacheDir(extractedPath, TOOL_NAME, cacheVersion);
+            toolPath = await toolCacheExports.cacheDir(extractedPath, TOOL_NAME, ghCacheVersion);
             coreExports.debug(`Cached path: ${toolPath}`);
-        }
-        else {
-            coreExports.info(`SonarQube scanner CLI version ${version}: Found in cache`);
         }
         // Add the tool to path
         const binPath = require$$1$5.join(toolPath, 'bin');
-        coreExports.info(`SonarQube scanner CLI version ${version}: Adding to PATH`);
+        coreExports.info(`Scanner CLI version ${cliVersion}: Adding to PATH`);
         coreExports.debug(`Adding ${binPath} to PATH`);
         coreExports.addPath(binPath);
     }
