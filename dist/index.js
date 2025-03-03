@@ -29950,7 +29950,7 @@ function _getOsPlatform() {
  */
 async function run() {
     try {
-        const version = coreExports.getInput('version', { required: true });
+        const version = coreExports.getInput('version');
         coreExports.debug(`Version input: ${version}`);
         // Get the scanner CLI version from the requested version
         const cliVersion = getCliVersion(version);

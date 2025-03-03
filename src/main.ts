@@ -11,7 +11,7 @@ import * as versions from './versions.js'
  */
 export async function run(): Promise<void> {
   try {
-    const version: string = core.getInput('version', { required: true })
+    const version: string = core.getInput('version')
     core.debug(`Version input: ${version}`)
 
     // Get the scanner CLI version from the requested version

@@ -23,6 +23,8 @@ You can find source code of the scanner CLI
 You can find additional informations in official Sonarqube
 [documentation](https://docs.sonarsource.com/sonarqube-server/latest/devops-platform-integration/github-integration/adding-analysis-to-github-actions-workflow/).
 
+<!-- prettier-ignore-start -->
+
 ```yaml
 name: SonarQube Workflow
 
@@ -45,28 +47,22 @@ jobs:
         uses: SylvainDumas/setup-sonar-scanner@v1
       # Run sonar-scanner
       - name: SonarQube Scan
-        run:
-          sonar-scanner -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-          -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.organization=${{
-          secrets.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{
-          secrets.SONAR_PROJECT_KEY }}
+        run: sonar-scanner
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.organization=$GITHUB_REPOSITORY_OWNER
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
 ```
+
+<!-- prettier-ignore-end -->
 
 ## Action Inputs
 
-| input     | type   | default      | description                                                                                                               |
-| --------- | ------ | ------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| `version` | string | `7.0.2.4839` | version of the scanner to install. List of available versions: https://github.com/SonarSource/sonar-scanner-cli/releases. |
+| input     | type   | default      | description                                                                                                                 |
+| --------- | ------ | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `version` | string | `7.0.2.4839` | version of the scanner to install. List of available versions: <https://github.com/SonarSource/sonar-scanner-cli/releases>. |
 
 ## License
 
 The scripts and documentation in this project are released under the
 [MIT License](LICENSE)
-
-## Contributions
-
-Contributions are welcome! See [Contributor's Guide](docs/contributors.md)
-
-## Code of Conduct
-
-:wave: Be nice. See [our code of conduct](CODE_OF_CONDUCT.md)
