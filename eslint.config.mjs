@@ -27,7 +27,7 @@ export default [
       '**/dist',
       '**/linter',
       '**/node_modules',
-      'CODE_OF_CONDUCT.md'
+      '**/CODE_OF_CONDUCT.md'
     ]
   },
   ...compat.extends(
