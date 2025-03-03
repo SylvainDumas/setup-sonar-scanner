@@ -1,4 +1,4 @@
-# Setup Sonarqube Scanner Action
+# Setup SonarQube Scanner Action
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
@@ -20,7 +20,7 @@ You can find source code of the scanner CLI
 
 ## Full Example usage
 
-You can find additional informations in official Sonarqube
+You can find additional informations in official SonarQube
 [documentation](https://docs.sonarsource.com/sonarqube-server/latest/devops-platform-integration/github-integration/adding-analysis-to-github-actions-workflow/).
 
 <!-- prettier-ignore-start -->
