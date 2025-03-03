@@ -2,7 +2,7 @@
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
-[![CodeQL](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql)
 [![GitHub Super-Linter](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
 ![CI](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/ci.yml/badge.svg)
 [![Check dist/](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml)
@@ -66,3 +66,7 @@ jobs:
 
 The scripts and documentation in this project are released under the
 [MIT License](LICENSE)
+
+## Code of Conduct
+
+:wave: Be nice. See [our code of conduct](CODE_OF_CONDUCT.md)
