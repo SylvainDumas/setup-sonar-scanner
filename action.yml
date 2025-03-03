@@ -1,23 +1,19 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: 'Setup Scanner CLI for SonarQube (Server, Cloud)'
+description:
+  'GitHub Actions to setup Scanner CLI for SonarQube (Server, Cloud) and add it
+  to PATH'
+author: SylvainDumas
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
+  icon: package
   color: red
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
-    required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: Your output description here
+  version:
+    description: 'The version to install'
+    default: '7.0.2.4839'
+    required: false
 
 runs:
   using: node20
