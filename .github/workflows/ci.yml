@@ -42,16 +42,15 @@ jobs:
       # SonarQube
       - name: 'SonarQube: Setup'
         uses: SylvainDumas/setup-sonar-scanner@feats/improve_init_version
+        with:
+          version: '6.2.1.4610'
       - name: 'SonarQube: Scan'
         env:
           SONAR_HOST_URL: ${{ env.SONAR_HOST_URL || 'https://sonarcloud.io' }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get git information, if any
         run: sonar-scanner
           -Dsonar.host.url="$SONAR_HOST_URL"
           -Dsonar.token="$SONAR_TOKEN"
-#          -Dsonar.plugins.downloadOnlyRequired=true
-#          -Dsonar.verbose=true
 
   test-action:
     name: GitHub Actions Test
