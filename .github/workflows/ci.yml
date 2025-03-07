@@ -44,7 +44,7 @@ jobs:
         uses: SylvainDumas/setup-sonar-scanner@feats/improve_init_version
       - name: 'SonarQube: Prepare'
         if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: echo "SONAR_OPTS=-Dsonar.branch.name=${{ github.ref_name }} -Dsonar.branch.target=${{ github.base_ref }}" >> $GITHUB_ENV
+        run: echo "SONAR_OPTS=-Dsonar.branch.name=${{ github.ref_name }}" >> $GITHUB_ENV
       - name: 'SonarQube: Scan'
         env:
           SONAR_HOST_URL: ${{ env.SONAR_HOST_URL || 'https://sonarcloud.io' }}
