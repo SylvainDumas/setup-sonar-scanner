@@ -18,32 +18,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        id: checkout
+      # Init
+      - name: 'Init: Checkout code'
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        id: setup-node
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: 'Init: Node.js'
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
           cache: npm
-
-      - name: Install Dependencies
-        id: npm-ci
+      - name: 'Init: Node Install Dependencies'
         run: npm ci
 
-      - name: Check Format
-        id: npm-format-check
+      # Checks
+      - name: 'Check: Format files'
         run: npm run format:check
-
-      - name: Lint
-        id: npm-lint
+      - name: 'Check: Lint'
         run: npm run lint
-
-      - name: Test
-        id: npm-ci-test
+      - name: 'Check: Test & Coverage'
         run: npm run ci-test
+
+      # SonarQube
+      - name: 'SonarQube: Setup'
+        uses: SylvainDumas/setup-sonar-scanner@feats/improve_init_version
+      - name: 'SonarQube: Scan'
+        env:
+          SONAR_HOST_URL: ${{ env.SONAR_HOST_URL || 'https://sonarcloud.io' }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: sonar-scanner
+          -Dsonar.host.url="$SONAR_HOST_URL"
+          -Dsonar.token="$SONAR_TOKEN"
 
   test-action:
     name: GitHub Actions Test
@@ -53,12 +58,12 @@ jobs:
         version: ['4.8.1.3023', '5.0.1.3006', '6.2.1.4610', '7.0.2.4839']
 
     steps:
-      - name: Checkout
-        id: checkout
+      # Init
+      - name: 'Init: Checkout code'
         uses: actions/checkout@v4
 
+      # Test
       - name: 'Test Local Action with CLI Version ${{ matrix.version }}'
-        id: test-action
         uses: ./
         with:
           version: ${{ matrix.version }}
