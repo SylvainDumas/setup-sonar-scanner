@@ -43,7 +43,7 @@ jobs:
       - name: 'SonarQube: Setup'
         uses: SylvainDumas/setup-sonar-scanner@feats/improve_init_version
         with:
-          version: '6.2.1.4610'
+          version: '5.0.1.3006'
       - name: 'SonarQube: Scan'
         env:
           SONAR_HOST_URL: ${{ env.SONAR_HOST_URL || 'https://sonarcloud.io' }}
