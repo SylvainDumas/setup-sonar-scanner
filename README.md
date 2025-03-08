@@ -2,7 +2,7 @@
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
-[![CodeQL](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql)
 [![GitHub Super-Linter](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
 ![CI](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/ci.yml/badge.svg)
 [![Check dist/](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml)
@@ -17,6 +17,32 @@ actions by:
 You can find source code of the scanner CLI
 [here](https://github.com/SonarSource/sonar-scanner-cli) and the available
 [versions](https://github.com/SonarSource/sonar-scanner-cli/releases)
+
+## Usage
+
+Minimal
+
+```yml
+- uses: SylvainDumas/setup-sonar-scanner@v1
+```
+
+With version
+
+```yml
+- uses: SylvainDumas/setup-sonar-scanner@v1
+  with:
+    version: '7.0.2.4839'
+```
+
+## Inputs
+
+### version
+
+- **type**: string
+- **required**: false
+- **default**: `7.0.2.4839`
+- **description**: version of the scanner to install. List of available
+  versions: <https://github.com/SonarSource/sonar-scanner-cli/releases>.
 
 ## Full Example usage
 
@@ -56,11 +82,18 @@ jobs:
 
 <!-- prettier-ignore-end -->
 
-## Action Inputs
+> [!NOTE]
+>
+> Need to be adapted following your use cases (GitHub workflow permissions, test
+> coverage generation, ...)
 
-| input     | type   | default      | description                                                                                                                 |
-| --------- | ------ | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `version` | string | `7.0.2.4839` | version of the scanner to install. List of available versions: <https://github.com/SonarSource/sonar-scanner-cli/releases>. |
+## Other actions
+
+- <https://github.com/SonarSource/sonarqube-scan-action> Official SonarQube
+  GitHub Action to install and run an analysis on your code, but doesn't allow
+  you to just install the Scanner CLI for SonarQube.
+- <https://github.com/Warchant/setup-sonar-scanner> Another GitHub Action to
+  install the Scanner CLI for SonarQube, but no longer seems to be maintained.
 
 ## License
 
