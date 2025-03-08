@@ -87,6 +87,14 @@ jobs:
 > Need to be adapted following your use cases (GitHub workflow permissions, test
 > coverage generation, ...)
 
+## Other actions
+
+- <https://github.com/SonarSource/sonarqube-scan-action> Official SonarQube
+  GitHub action to install and run an analysis on your code, but doesn't allow
+  you to just install the Scanner CLI for SonarQube.
+- <https://github.com/Warchant/setup-sonar-scanner> Another GitHub action to
+  install the Scanner CLI for SonarQube, but no longer seems to be maintained.
+
 ## License
 
 The scripts and documentation in this project are released under the
