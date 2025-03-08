@@ -41,7 +41,7 @@ jobs:
 
       # SonarQube
       - name: 'SonarQube: Setup'
-        uses: SylvainDumas/setup-sonar-scanner@feats/improve_init_version
+        uses: SylvainDumas/setup-sonar-scanner@v1
       - name: 'SonarQube: Prepare'
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: echo "SONAR_OPTS=-Dsonar.branch.name=${{ github.ref_name }}" >> "$GITHUB_ENV"
