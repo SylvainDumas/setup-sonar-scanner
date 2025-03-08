@@ -2,7 +2,6 @@
 
 ## 1.0.0 (2025-03-08)
 
-
 ### Features
 
 * install scanner cli on system based on SonarQube cli version ([#4](https://github.com/SylvainDumas/setup-sonar-scanner/issues/4)) ([532cbf4](https://github.com/SylvainDumas/setup-sonar-scanner/commit/532cbf4c93cddd3a9333c07ee2f9080c00022351))

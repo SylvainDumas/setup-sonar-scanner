@@ -5,3 +5,5 @@ node_modules/
 coverage/
 .github/
 .local/
+
+CHANGELOG.md
