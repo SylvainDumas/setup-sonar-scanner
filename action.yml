@@ -12,7 +12,7 @@ branding:
 inputs:
   version:
     description: 'The version to install'
-    default: '7.0.2.4839'
+    default: 'latest'
     required: false
 
 runs:

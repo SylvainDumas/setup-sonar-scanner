@@ -20,13 +20,14 @@ You can find source code of the scanner CLI
 
 ## Usage
 
-Minimal
+Minimal (default use the latest version)
 
 ```yml
 - uses: SylvainDumas/setup-sonar-scanner@v1
 ```
 
-With version
+With explicit SonarQube Scanner CLI
+[version](https://github.com/SonarSource/sonar-scanner-cli/releases)
 
 ```yml
 - uses: SylvainDumas/setup-sonar-scanner@v1
@@ -34,15 +35,32 @@ With version
     version: '7.0.2.4839'
 ```
 
+With
+[semantic version](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
+
+```yml
+- uses: SylvainDumas/setup-sonar-scanner@v1
+  with:
+    version: '7.x'
+```
+
+> [!TIP]
+>
+> You can use expression like `7.x` or more complex like `>=1.2.7 <1.3.0`,
+> `1.2.7 || >=1.2.9 <2.0.0`, ...
+
 ## Inputs
 
 ### version
 
 - **type**: string
 - **required**: false
-- **default**: `7.0.2.4839`
-- **description**: version of the scanner to install. List of available
-  versions: <https://github.com/SonarSource/sonar-scanner-cli/releases>.
+- **default**: `latest`
+- **description**: version of the scanner to install.
+  - latest
+  - explicit
+    [SonarQube Scanner CLI](https://github.com/SonarSource/sonar-scanner-cli/releases)
+  - [semantic range](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
 
 ## Full Example usage
 
@@ -60,6 +78,9 @@ on:
       - main # the name of your main branch
   pull_request:
     types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
 
 jobs:
   sonarqube-analysis:
