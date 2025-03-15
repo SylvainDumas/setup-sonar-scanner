@@ -23,8 +23,7 @@ jobs:
 
       - name: Check new version of SonarQube Scanner CLI
         run: |
-          git diff --ignore-space-at-eol --exit-code --text src/versions.manifest.ts
-          if [[ $? -ne 0 ]]; then
+          if ! git diff --ignore-space-at-eol --exit-code --text src/versions.manifest.ts; then
             echo "Detected new version of SonarQube Scanner CLI."
             exit 1
           fi
