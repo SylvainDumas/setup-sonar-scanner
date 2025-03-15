@@ -20,6 +20,6 @@ fi
 json_array=${json_array//\"/\'}
 
 # Save JSON array to versi.ts file
-echo "export const CLI_VERSIONS = $json_array" > src/versions.manifest.ts
-echo "" >> src/versions.manifest.ts
-echo "export const CLI_VERSION_LATEST = CLI_VERSIONS[0]" >> src/versions.manifest.ts
+echo "export const CLI_VERSIONS = $json_array" >src/versions.manifest.ts
+echo "" >>src/versions.manifest.ts
+echo "export const CLI_VERSION_LATEST = CLI_VERSIONS[0]" >>src/versions.manifest.ts
