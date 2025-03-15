@@ -7,16 +7,19 @@
 ![CI](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/ci.yml/badge.svg)
 [![Check dist/](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml)
 
-This action sets up the Scanner CLI for SonarQube (Server, Cloud) for use in
+This Action sets up the Scanner CLI for SonarQube (Server, Cloud) for use in
 actions by:
 
-- Optionally downloading and caching distribution of the requested scanner CLI
+- Optionally downloading and caching distribution of the requested Scanner CLI
   version, and adding it to the PATH
 - Registering problem matchers for error output.
 
-You can find source code of the scanner CLI
-[here](https://github.com/SonarSource/sonar-scanner-cli) and the available
-[versions](https://github.com/SonarSource/sonar-scanner-cli/releases)
+version can be the `latest`, an
+[explicit](https://github.com/SonarSource/sonar-scanner-cli/releases) or a
+[semantic version range](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
+
+You can find source code of the Scanner CLI
+[here](https://github.com/SonarSource/sonar-scanner-cli)
 
 ## Usage
 
@@ -26,7 +29,7 @@ Minimal (default use the latest version)
 - uses: SylvainDumas/setup-sonar-scanner@v1
 ```
 
-With explicit SonarQube Scanner CLI
+With an explicit
 [version](https://github.com/SonarSource/sonar-scanner-cli/releases)
 
 ```yml
@@ -35,8 +38,8 @@ With explicit SonarQube Scanner CLI
     version: '7.0.2.4839'
 ```
 
-With
-[semantic version](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
+With a
+[semantic version range](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
 
 ```yml
 - uses: SylvainDumas/setup-sonar-scanner@v1
@@ -56,11 +59,10 @@ With
 - **type**: string
 - **required**: false
 - **default**: `latest`
-- **description**: version of the scanner to install.
+- **description**: version of the Scanner CLI to install.
   - latest
-  - explicit
-    [SonarQube Scanner CLI](https://github.com/SonarSource/sonar-scanner-cli/releases)
-  - [semantic range](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
+  - [explicit](https://github.com/SonarSource/sonar-scanner-cli/releases)
+  - [semantic version range](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
 
 ## Full Example usage
 
