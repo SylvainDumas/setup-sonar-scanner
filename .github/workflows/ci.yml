@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ['4.8.1.3023', '5.0.1.3006', '6.2.1.4610', '7.0.2.4839', 'latest', '>6 <6.2']
+        version: ['4.8.1.3023', '5.0.1.3006', '6.2.1.4610', '7.0.2.4839', 'latest', '>=6 <6.2']
 
     steps:
       # Init
