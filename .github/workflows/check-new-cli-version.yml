@@ -1,0 +1,29 @@
+name: Check New CLI Version
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight
+
+permissions:
+  contents: read
+
+jobs:
+  generate-versions-manifest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run generate.versions.manifest.sh script
+        run: ./scripts/generate.versions.manifest.sh
+
+      - name: Check new version of SonarQube Scanner CLI
+        run: |
+          if ! git diff --ignore-space-at-eol --exit-code --text src/versions.manifest.ts; then
+            echo "Detected new version of SonarQube Scanner CLI."
+            exit 1
+          fi

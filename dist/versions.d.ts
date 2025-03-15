@@ -1,26 +1,27 @@
 import * as install from './install.js';
 export declare const TOOL_NAME: string;
 /**
- * Retrieves the CLI version if the requested version is in a supported format.
+ * Retrieves the CLI version based on the provided version specification.
  *
- * @param requested - The version string requested by the user.
- * @returns The requested version string if it is in a supported format.
- * @throws {Error} If the requested version format is unsupported.
+ * @param versionSpec - The version specification, which can be:
+ *   - 'latest' to get the latest CLI version.
+ *   - An explicit CLI version string.
+ *   - A version range or other semver-compatible specification.
+ * @returns The CLI version that matches the provided specification.
+ * @throws Will throw an error if no matching CLI version is found.
  */
-export declare function getCliVersion(requested: string): string;
+export declare function getCliVersion(versionSpec: string): string;
 /**
- * Extracts the major, minor, and patch version from a given version string.
+ * Transforms the given CLI version to a semantic version format.
  *
- * @param version - The version string to process.
- * @returns The version string in the format "major.minor.patch".
- * @throws If the version format is unsupported.
+ * @param cliVersion - The version string of the CLI.
+ * @returns The transformed semantic version string.
  */
-export declare function getGhCacheVersion(version: string): string;
+export declare function getGhCacheVersion(cliVersion: string): string;
 /**
- * Retrieves the source URL and digest for a given SonarQube scanner version.
+ * Retrieves the source URL and digest for a given SonarQube Scanner CLI version.
  *
- * @param version - The version of the SonarQube scanner in the format x.x.x.x.
- * @returns An object containing the URL and digest of the SonarQube scanner.
- * @throws Will throw an error if the version format is unsupported.
+ * @param cliVersion - The version of the SonarQube Scanner CLI.
+ * @returns An object containing the URL and digest of the specified CLI version.
  */
-export declare function getVersionSource(version: string): install.Source;
+export declare function getVersionSource(cliVersion: string): install.Source;
