@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Fetch tags from the GitHub repository
 tags=$(curl -s https://api.github.com/repos/SonarSource/sonar-scanner-cli/tags | jq -r '.[].name')
@@ -16,7 +17,7 @@ if [ "$json_array" == "[]" ]; then
 fi
 
 # Replace " with ' in the JSON array
-json_array=$(echo "$json_array" | sed "s/\"/'/g")
+json_array=${json_array//\"/\'}
 
 # Save JSON array to versi.ts file
 echo "export const CLI_VERSIONS = $json_array" > src/versions.manifest.ts
