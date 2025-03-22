@@ -64,6 +64,10 @@ With a
   - [explicit](https://github.com/SonarSource/sonar-scanner-cli/releases)
   - [semantic version range](https://github.com/npm/node-semver?tab=readme-ov-file#versions)
 
+> [!WARNING]
+>
+> Minimum version supported: 3.x
+
 ## Full Example usage
 
 You can find additional informations in official SonarQube

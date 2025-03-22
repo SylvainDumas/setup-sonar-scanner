@@ -29867,6 +29867,7 @@ function _getExtractorFn(packageFile) {
 }
 
 const CLI_VERSIONS = [
+    '7.1.0.4889',
     '7.0.2.4839',
     '7.0.1.4817',
     '7.0.0.4796',
