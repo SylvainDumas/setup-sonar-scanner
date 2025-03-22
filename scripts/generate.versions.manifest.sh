@@ -24,8 +24,11 @@ fetch_tags() {
 # Fetch all tags
 tags=$(fetch_tags)
 
+# Filter tags to keep only versions 3.x.x and above
+filtered_tags=$(echo "$tags" | tr ' ' '\n' | grep -E '^v?[3-9]|^v?[1-9][0-9]')
+
 # Sort tags
-sorted_tags=$(echo "$tags" | tr ' ' '\n' | sort -rV)
+sorted_tags=$(echo "$filtered_tags" | tr ' ' '\n' | sort -rV)
 
 # Convert sorted tags to JSON array
 json_array=$(echo "$sorted_tags" | jq -R . | jq -s .)
