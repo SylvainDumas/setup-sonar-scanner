@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/SylvainDumas/setup-sonar-scanner/compare/v1.0.0...v1.1.0) (2025-03-22)
+
+
+### Features
+
+* support retrieve for version &gt;=3.x ([#19](https://github.com/SylvainDumas/setup-sonar-scanner/issues/19)) ([2bf6c1e](https://github.com/SylvainDumas/setup-sonar-scanner/commit/2bf6c1eb0242aef670727d0576e171495686a8fc))
+* version support for latest, explicit SonarQube CLI and semver range ([#14](https://github.com/SylvainDumas/setup-sonar-scanner/issues/14)) ([37f5856](https://github.com/SylvainDumas/setup-sonar-scanner/commit/37f58567843607ebfcea1419aa73b791daccd718))
+
 ## 1.0.0 (2025-03-08)
 
 ### Features
