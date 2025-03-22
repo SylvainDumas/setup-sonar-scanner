@@ -14,7 +14,7 @@ fetch_tags() {
       break
     fi
 
-    tags+=($page_tags)
+    tags+=("$page_tags")
     ((page++))
   done
 
@@ -22,10 +22,10 @@ fetch_tags() {
 }
 
 # Fetch all tags
-tags=$(fetch_tags)
+fetched_tags=$(fetch_tags)
 
 # Filter tags to keep only versions 3.x.x and above
-filtered_tags=$(echo "$tags" | tr ' ' '\n' | grep -E '^v?[3-9]|^v?[1-9][0-9]')
+filtered_tags=$(echo "$fetched_tags" | tr ' ' '\n' | grep -E '^[3-9]|^[1-9][0-9]')
 
 # Sort tags
 sorted_tags=$(echo "$filtered_tags" | tr ' ' '\n' | sort -rV)
