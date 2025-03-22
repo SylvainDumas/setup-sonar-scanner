@@ -1,7 +1,7 @@
 # Setup SonarQube Scanner Action
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SylvainDumas_setup-sonar-scanner&metric=coverage)](https://sonarcloud.io/summary/new_code?id=SylvainDumas_setup-sonar-scanner)
 [![CodeQL](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql)
 [![GitHub Super-Linter](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
 ![CI](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/ci.yml/badge.svg)
