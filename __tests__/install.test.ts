@@ -3,31 +3,33 @@ import fs from 'fs'
 import path from 'path'
 import io from '@actions/io'
 import nock from 'nock'
-import os from 'node:os'
-
-const tempPath = mkTempDir()
-const cachePath = mkTempDir()
-process.env['RUNNER_TOOL_CACHE'] = cachePath
-process.env['RUNNER_TEMP'] = tempPath
-const testdataPath = path.join(process.cwd(), '__tests__', 'testdata')
+import { mkTempDir } from './tools'
 
 const IS_WINDOWS = process.platform === 'win32'
 //const IS_MAC = process.platform === 'darwin'
-
-function mkTempDir(): string {
-  return path.join(os.tmpdir(), `${crypto.randomUUID()}`)
-}
+const testdataPath = path.join(process.cwd(), '__tests__', 'testdata')
 
 describe('downloadTool', () => {
+  const originalRunnerTemp = process.env['RUNNER_TEMP']
+  const tempPath = mkTempDir()
+
+  beforeAll(() => {
+    process.env['RUNNER_TEMP'] = tempPath
+  })
+
   beforeEach(async () => {
-    await io.mkdirP(cachePath)
+    //await io.mkdirP(cachePath)
     await io.mkdirP(tempPath)
   })
 
   afterEach(async () => {
     await io.rmRF(tempPath)
-    await io.rmRF(cachePath)
+    //await io.rmRF(cachePath)
     nock.cleanAll()
+  })
+
+  afterAll(() => {
+    process.env['RUNNER_TEMP'] = originalRunnerTemp
   })
 
   for (const extension of ['zip', '7z', 'tar.gz']) {
