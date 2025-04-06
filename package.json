@@ -27,16 +27,18 @@
     "node": ">=20"
   },
   "scripts": {
-    "bundle": "rm -fr dist/* && npm run format:write && npm run package",
+    "bundle": "npm run format:write && npm run package",
+    "bundle:clean": "rm -fr dist/*",
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
     "lint": "npx eslint .",
     "local-action": "npx @github/local-action . src/main.ts .env",
-    "package": "npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "modules:clean": "rm -rf node_modules",
+    "modules:upgrade": "npm run modules:clean && npx npm-check-updates -i --format group && npm update && npm audit fix",
+    "package": "npm run bundle:clean && npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "package:watch": "npm run package -- --watch",
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest",
-    "all": "npm run format:write && npm run lint && npm run test && npm run package",
-    "upgrade": "rm -rf node_modules && npx npm-check-updates -i --format group && npm update && npm audit fix"
+    "all": "npm run format:write && npm run lint && npm run test && npm run package"
   },
   "license": "MIT",
   "dependencies": {
