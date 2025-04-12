@@ -10,17 +10,14 @@ export class Source {
   digest?: string
 }
 
-export class ToolInfo {
-  source!: Source
-  versionCache!: string
-  binPath!: string
-}
-
 /**
- * Downloads the tool and caches it.
+ * Downloads a tool from the specified source URL, extracts it, and returns the path to the extracted content.
+ * If the extracted content contains a single directory, the path to that directory is returned.
  *
- * @param source - The source information for the tool.
- * @returns The path to the downloaded tool.
+ * @param source - An object containing the URL of the tool to download.
+ * @returns A promise that resolves to the path of the extracted tool.
+ *
+ * @throws Will throw an error if the download or extraction process fails.
  */
 export async function downloadTool(source: Source): Promise<string> {
   // Download the tool
@@ -33,7 +30,7 @@ export async function downloadTool(source: Source): Promise<string> {
   let extractPath = await extractorMethod(packagePath)
 
   // If the package contains a single directory, return the path to it
-  const packageContents = fs.readdirSync(extractPath)
+  const packageContents: string[] = fs.readdirSync(extractPath)
   if (packageContents.length === 1) {
     const packageContentPath = path.join(extractPath, packageContents[0])
     if (fs.statSync(packageContentPath).isDirectory()) {
@@ -44,6 +41,8 @@ export async function downloadTool(source: Source): Promise<string> {
   return extractPath
 }
 
+type ExtractorFn = (file: string, dest?: string) => Promise<string>
+
 /**
  * Returns an appropriate extraction function based on the file extension of the given package file.
  *
@@ -52,25 +51,21 @@ export async function downloadTool(source: Source): Promise<string> {
  *
  * @throws Will throw an error if the file extension is unsupported.
  */
-function _getExtractorFn(
-  packageFile: string
-): (file: string, dest?: string) => Promise<string> {
-  // get file extension
-  const fileExtension = packageFile.split('.').pop()?.toLowerCase()
-
-  // return appropriate extraction function
-  switch (fileExtension) {
-    case 'zip':
-      return tc.extractZip
-    case '7z':
-      return tc.extract7z
-    case 'pkg':
-      return tc.extractXar
-    case 'tar.gz':
-      return tc.extractTar
-    default:
-      throw new Error(
-        `Unable to find extract function for file extension: ${fileExtension}`
-      )
+function _getExtractorFn(packageFile: string): ExtractorFn {
+  // Map of known file extensions to extraction functions
+  const extensionMap: { [key: string]: ExtractorFn } = {
+    '.zip': tc.extractZip,
+    '.7z': tc.extract7z,
+    '.pkg': tc.extractXar,
+    '.tar.gz': tc.extractTar
   }
+
+  // Determine the file extension
+  const filename = path.basename(packageFile)
+  for (const [extension, extractor] of Object.entries(extensionMap)) {
+    if (filename.endsWith(extension)) return extractor
+  }
+
+  // If the file extension is not recognized, throw an error
+  throw new Error(`Unable to find extract function for file: ${filename}`)
 }

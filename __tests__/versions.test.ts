@@ -1,5 +1,5 @@
 import * as versions from '../src/versions'
-import * as manifest from '../src/versions.manifest.js'
+import * as manifest from '../src/versions.manifest'
 
 describe('getCliVersion', () => {
   it('should return the latest version if the input is "latest"', () => {
