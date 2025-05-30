@@ -35,6 +35,7 @@
     "local-action": "npx @github/local-action . src/main.ts .env",
     "modules:clean": "rm -rf node_modules",
     "modules:upgrade": "npm run modules:clean && npx npm-check-updates -i --format group && npm update && npm audit fix",
+    "modules:revert": "npm run modules:clean && git checkout package.json package-lock.json && npm install",
     "package": "npm run bundle:clean && npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "package:watch": "npm run package -- --watch",
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest",
