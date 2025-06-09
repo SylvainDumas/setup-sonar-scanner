@@ -26,7 +26,7 @@ jobs:
       - name: 'Init: Node.js'
         uses: actions/setup-node@v4
         with:
-          node-version-file: .node-version
+          node-version-file: package.json
           cache: npm
       - name: 'Init: Node Install Dependencies'
         run: npm ci
@@ -59,15 +59,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ['4.8.1.3023', '5.0.1.3006', '6.2.1.4610', '7.0.2.4839', 'latest', '7.0.2', '>=6 <6.2']
+        node-version: ['20', '22', '24']
+        cli-version: ['4.8.1.3023', '5.0.1.3006', '6.2.1.4610', '7.0.2.4839', 'latest', '7.0.2', '>=6 <6.2']
 
     steps:
       # Init
       - name: 'Init: Checkout code'
         uses: actions/checkout@v4
+      - name: 'Init: Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
       # Test
-      - name: 'Test Local Action with CLI Version ${{ matrix.version }}'
+      - name: 'Test Local Action with Node Version ${{ matrix.node-version }} -  CLI Version ${{ matrix.cli-version }}'
         uses: ./
         with:
-          version: ${{ matrix.version }}
+          version: ${{ matrix.cli-version }}

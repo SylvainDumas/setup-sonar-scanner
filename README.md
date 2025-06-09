@@ -1,11 +1,15 @@
 # Setup SonarQube Scanner Action
 
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Conventional Branch](https://img.shields.io/badge/Conventional%20Branch-1.0.0-blue.svg)](https://conventional-branch.github.io)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-blue.svg)](https://conventionalcommits.org)
+[![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue)](https://semver.org/)
+
+![CI](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/ci.yml/badge.svg)
+[![Check dist/](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml)
+
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SylvainDumas_setup-sonar-scanner&metric=coverage)](https://sonarcloud.io/summary/new_code?id=SylvainDumas_setup-sonar-scanner)
 [![CodeQL](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/github-code-scanning/codeql)
 [![GitHub Super-Linter](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/ci.yml/badge.svg)
-[![Check dist/](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml/badge.svg)](https://github.com/SylvainDumas/setup-sonar-scanner/actions/workflows/check-dist.yml)
 
 This Action sets up the Scanner CLI for SonarQube (Server, Cloud) for use in
 actions by:
