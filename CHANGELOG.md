@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/SylvainDumas/setup-sonar-scanner/compare/v1.1.0...v1.2.0) (2025-06-09)
+
+
+### Features
+
+* add Sonar Cli version 5.0.2.4997 ([#43](https://github.com/SylvainDumas/setup-sonar-scanner/issues/43)) ([aa4e29e](https://github.com/SylvainDumas/setup-sonar-scanner/commit/aa4e29e09fc353c35f1034a0adbe120110e01e2e))
+
 ## [1.1.0](https://github.com/SylvainDumas/setup-sonar-scanner/compare/v1.0.0...v1.1.0) (2025-03-22)
 
 
