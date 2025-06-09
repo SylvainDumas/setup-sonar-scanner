@@ -18,7 +18,7 @@ describe('getCliVersion', () => {
 
   const expectedVersionByRange = {
     '>=5.0.0': manifest.CLI_VERSION_LATEST,
-    '<6.0.0': '5.0.1.3006',
+    '<6.0.0': '5.0.2.4997',
     '>=6.0.0 <7.0.0': '6.2.1.4610',
     '3.x': '3.4.0.1729',
     '3.0.x': '3.0.3.778',
