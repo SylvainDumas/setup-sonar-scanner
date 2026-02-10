@@ -8,7 +8,12 @@ describe('getCliVersion', () => {
     expect(result).toBe(manifest.CLI_VERSION_LATEST)
   })
 
-  const wellKnownVersions = ['7.0.2.4839', '6.2.0.4584', '5.0.0.2966']
+  const wellKnownVersions = [
+    '8.0.1.6346',
+    '7.3.0.5189',
+    '6.2.0.4584',
+    '5.0.0.2966'
+  ]
   wellKnownVersions.forEach((version) => {
     it(`should return the requested version if it is a well-known version: ${version}`, () => {
       const result = versions.getCliVersion(version)
