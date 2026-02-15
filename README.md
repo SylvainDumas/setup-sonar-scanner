@@ -25,6 +25,11 @@ version can be the `latest`, an
 You can find source code of the Scanner CLI
 [here](https://github.com/SonarSource/sonar-scanner-cli)
 
+## Requirements
+
+- Node.js 20.19.0 or later (`>=20.19.0`).
+- GitHub-hosted runners are supported and follow GitHub runtime evolution.
+
 ## Usage
 
 Minimal (default use the latest version)
@@ -39,7 +44,7 @@ With an explicit
 ```yml
 - uses: SylvainDumas/setup-sonar-scanner@v1
   with:
-    version: '7.0.2.4839'
+    version: '8.0.1.6346'
 ```
 
 With a
@@ -48,7 +53,7 @@ With a
 ```yml
 - uses: SylvainDumas/setup-sonar-scanner@v1
   with:
-    version: '7.x'
+    version: '8.x'
 ```
 
 > [!TIP]
