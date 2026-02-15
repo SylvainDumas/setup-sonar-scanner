@@ -25,6 +25,11 @@ version can be the `latest`, an
 You can find source code of the Scanner CLI
 [here](https://github.com/SonarSource/sonar-scanner-cli)
 
+## Requirements
+
+- Node.js 20.19.0 or later (`>=20.19.0`).
+- GitHub-hosted runners are supported and follow GitHub runtime evolution.
+
 ## Usage
 
 Minimal (default use the latest version)
