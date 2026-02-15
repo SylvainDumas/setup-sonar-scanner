@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/SylvainDumas/setup-sonar-scanner/compare/v1.2.0...v1.3.0) (2026-02-15)
+
+
+### Features
+
+* **versions:** add Sonar CLI 8.x entries and refresh docs/tests ([#73](https://github.com/SylvainDumas/setup-sonar-scanner/issues/73)) ([7c7ce0d](https://github.com/SylvainDumas/setup-sonar-scanner/commit/7c7ce0d2deb46f58bf47df7c41ba909a059622c5))
+
 ## [1.2.0](https://github.com/SylvainDumas/setup-sonar-scanner/compare/v1.1.0...v1.2.0) (2025-06-09)
 
 
