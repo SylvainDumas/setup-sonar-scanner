@@ -1,7 +1,7 @@
 import * as install from '../src/install'
 import fs from 'fs'
 import path from 'path'
-import io from '@actions/io'
+import * as io from '@actions/io'
 import nock from 'nock'
 import { mkTempDir } from './tools'
 
