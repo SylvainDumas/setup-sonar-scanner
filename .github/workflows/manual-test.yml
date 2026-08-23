@@ -1,0 +1,28 @@
+name: Manual Test
+on:
+  workflow_dispatch:
+    inputs:
+      scanner-version:
+        description: 'Version of the scanner to use'
+        required: false
+        default: '8.1.0.6389'
+
+permissions:
+  contents: read
+
+jobs:
+  test-typescript:
+    name: Manual test setup scanner
+    runs-on: ubuntu-latest
+
+    steps:
+      # Init
+      - name: 'Init: Checkout code'
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - uses: ./
+        with:
+          version: ${{ github.event.inputs.scanner-version }}
+      
+      - name: 'SonarQube: Scan'
+        run: sonar-scanner --version
