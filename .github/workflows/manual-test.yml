@@ -1,11 +1,12 @@
 name: Manual Test
+
+# checkov:skip=CKV_GHA_7:Manual test workflow intentionally allows selecting the scanner version.
 on:
   workflow_dispatch:
     inputs:
       scanner-version:
         description: 'Version of the scanner to use'
         required: false
-        default: '8.1.0.6389'
 
 permissions:
   contents: read
@@ -22,7 +23,7 @@ jobs:
 
       - uses: ./
         with:
-          version: ${{ github.event.inputs.scanner-version }}
-      
+          version: ${{ inputs.scanner-version || 'latest' }}
+
       - name: 'SonarQube: Scan'
         run: sonar-scanner --version
