@@ -9,7 +9,7 @@ describe('getCliVersion', () => {
   })
 
   const wellKnownVersions = [
-    '8.0.1.6346',
+    '8.1.0.6389',
     '7.3.0.5189',
     '6.2.0.4584',
     '5.0.0.2966'

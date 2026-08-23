@@ -24,7 +24,7 @@
     ".": "./dist/index.js"
   },
   "engines": {
-    "node": ">=20.19.0"
+    "node": "24"
   },
   "scripts": {
     "bundle": "npm run format:write && npm run package",
@@ -33,7 +33,7 @@
     "format:check": "npx prettier --check .",
     "lint": "npx eslint .",
     "local-action": "npx @github/local-action . src/main.ts .env",
-    "modules:clean": "rm -rf node_modules",
+    "modules:clean": "rm -rf node_modules/*",
     "modules:upgrade": "npm run modules:clean && npx npm-check-updates -i --format group --peer && npm install && npm audit fix",
     "modules:revert": "npm run modules:clean && git checkout package.json package-lock.json && npm install",
     "package": "npm run bundle:clean && npx rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
@@ -43,40 +43,39 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "@actions/tool-cache": "^4.0.0",
-    "@types/semver": "^7.7.1"
+    "semver": "^7.8.5"
   },
   "devDependencies": {
-    "@eslint/compat": "^2.0.2",
-    "@github/local-action": "^7.0.0",
-    "@jest/globals": "^30.2.0",
-    "@rollup/plugin-commonjs": "^29.0.0",
+    "@actions/io": "^2.0.0",
+    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/js": "^9.39.5",
+    "@eslint/compat": "^2.1.0",
+    "@github/local-action": "^7.0.1",
+    "@jest/globals": "^30.4.1",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^20.19.33",
-    "@typescript-eslint/eslint-plugin": "^8.55.0",
-    "@typescript-eslint/parser": "^8.55.0",
-    "eslint": "^9.39.2",
+    "@types/node": "^24.13.3",
+    "@types/semver": "^7.8.0",
+    "@typescript-eslint/eslint-plugin": "^8.67.0",
+    "@typescript-eslint/parser": "^8.67.0",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jest": "^29.14.0",
-    "eslint-plugin-prettier": "^5.5.5",
-    "jest": "^30.2.0",
-    "nock": "^14.0.11",
-    "prettier": "^3.8.1",
-    "prettier-eslint": "^16.4.2",
-    "rollup": "^4.57.1",
-    "ts-jest": "^29.4.6",
+    "eslint-plugin-jest": "^29.16.1",
+    "eslint-plugin-prettier": "^5.5.6",
+    "globals": "^16.5.0",
+    "jest": "^30.4.2",
+    "nock": "^14.0.17",
+    "prettier": "^3.9.6",
+    "rollup": "^4.62.5",
+    "ts-jest": "^29.4.12",
     "ts-jest-resolver": "^2.0.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "*"
+    "typescript": "^6.0.3"
   },
   "overrides": {
     "undici": "^6.23.0"

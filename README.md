@@ -27,7 +27,7 @@ You can find source code of the Scanner CLI
 
 ## Requirements
 
-- Node.js 20.19.0 or later (`>=20.19.0`).
+- Node.js 24.x.
 - GitHub-hosted runners are supported and follow GitHub runtime evolution.
 
 ## Usage
@@ -44,7 +44,7 @@ With an explicit
 ```yml
 - uses: SylvainDumas/setup-sonar-scanner@v1
   with:
-    version: '8.0.1.6346'
+    version: '8.1.0.6389'
 ```
 
 With a
