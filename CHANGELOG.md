@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/SylvainDumas/setup-sonar-scanner/compare/v1.3.0...v1.4.0) (2026-08-23)
+
+
+### Features
+
+* **node:** upgrade action runtime to Node 24 ([#91](https://github.com/SylvainDumas/setup-sonar-scanner/issues/91)) ([fcd0f42](https://github.com/SylvainDumas/setup-sonar-scanner/commit/fcd0f4278b385226a34c26fb7c3fff628a0aa732))
+
 ## [1.3.0](https://github.com/SylvainDumas/setup-sonar-scanner/compare/v1.2.0...v1.3.0) (2026-02-15)
 
 
