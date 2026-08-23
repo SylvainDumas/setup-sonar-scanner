@@ -44,7 +44,7 @@ With an explicit
 ```yml
 - uses: SylvainDumas/setup-sonar-scanner@v1
   with:
-    version: '8.0.1.6346'
+    version: '8.1.0.6389'
 ```
 
 With a
